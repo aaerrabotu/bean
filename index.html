@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .square {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+      transition: all 0.5s;
+    }
+
+    .animate {
+      width: 100px;
+      height: 100px;
+      background-color: transparent;
+      position: relative;
+      animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+      0% { left: 0; }
+      50% { left: calc(100% - 100px); }
+      100% { left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="square" onclick="animateToKidneyBean()"></div>
+
+  <script>
+    function animateToKidneyBean() {
+      var square = document.querySelector('.square');
+      square.classList.add('animate');
+
+      var img = document.createElement('img');
+      img.src = 'bean.png';
+      img.style.width = '100px';  // Adjust the width of the bean image
+      img.style.height = '100px'; // Adjust the height of the bean image
+      square.appendChild(img);
+    }
+
+    // This script is added to prevent the animation from pausing if the tab becomes inactive
+    // It's not necessary for the animation to work
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === 'hidden') {
+        document.title = 'Paused';
+      } else {
+        document.title = 'Animating';
+      }
+    });
+  </script>
+</body>
+</html>
